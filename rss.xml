@@ -2,7 +2,7 @@
 <rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>
     <title>bigbardwolf.dev</title>
-    <description>NetSuite Developer, 4+ Years Experience.</description>
+    <description>My perosnal/professional website, project details and about me etc.</description>
     <link>https://bigbardwolf.dev</link>
     <language>en</language>
     <generator>Arise</generator>
@@ -13,7 +13,14 @@
     </image>
     <atom:link href="https://bigbardwolf.dev/rss.xml" rel="self" type="application/rss+xml"/>
         <ttl>60</ttl>
-<lastBuildDate>Mon, 06 Oct 2025 09:43:44 +0000</lastBuildDate>
+<lastBuildDate>Mon, 06 Oct 2025 10:09:53 +0000</lastBuildDate>
+        <item>
+        <title>Test Project</title>
+        <dc:creator>Josh Simpson</dc:creator>
+        <description>Page creation test for projects</description>
+        <link>https://bigbardwolf.dev/projects/test-project/</link>
+        <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
+        </item>
         <item>
         <title>Test Post</title>
         <dc:creator>Josh Simpson</dc:creator>
