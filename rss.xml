@@ -13,19 +13,12 @@
     </image>
     <atom:link href="https://bigbardwolf.dev/rss.xml" rel="self" type="application/rss+xml"/>
         <ttl>60</ttl>
-<lastBuildDate>Mon, 06 Oct 2025 10:09:53 +0000</lastBuildDate>
+<lastBuildDate>Mon, 06 Oct 2025 10:14:17 +0000</lastBuildDate>
         <item>
         <title>Test Project</title>
         <dc:creator>Josh Simpson</dc:creator>
         <description>Page creation test for projects</description>
         <link>https://bigbardwolf.dev/projects/test-project/</link>
-        <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
-        </item>
-        <item>
-        <title>Test Post</title>
-        <dc:creator>Josh Simpson</dc:creator>
-        <description>Test post for Arise-based website.</description>
-        <link>https://bigbardwolf.dev/posts/first-post/</link>
         <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
         </item>
 </channel>
