@@ -19,7 +19,7 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Deploy Arise
+    name: Build Website
     steps:
       - name: Check if we should deploy to prod or staging
         run: |
@@ -55,10 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Handled automatically -- Don't change this unless you're pushing to a different repo
           MESSAGE: "Commit: ({sha}) {msg}" # Copies commit msg from main to the deploy version branch
 
-  deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
