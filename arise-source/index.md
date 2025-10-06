@@ -1,5 +1,5 @@
 <!-- BEGIN ARISE ------------------------------
-Title:: "about"
+Title:: "home"
 
 Author:: "Josh Simpson"
 Description:: "NetSuite Developer, 4+ Years Experience."
@@ -12,14 +12,21 @@ content_header:: "false"
 rss_hide:: "true"
 ---- END ARISE \\ DO NOT MODIFY THIS LINE ---->
 
-# Profile
-A NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support.
-I have experience with:
-<ul>
-  <li>SuiteScript 2.0/2.1</li>
-  <li>SuiteCloud Development Framework</li>
-  <li>Project ownership: from specification to production</li>
-</ul>
+# About
+I am a NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support.
+## Experience:
+* SuiteScript 2.0/2.1
+* SuiteCloud Development Framework
+* Freemarker & Advanced PDF Layouts
+* Project ownership: from specification to production
+* Troubleshooting and support
 
 # Free Time
-In my free time I enjoy reading, primarily fantasy and science-fiction novels.
+In my free time I enjoy reading, gaming, and taking my dog for long walks.
+## Top Books
+I mostly enjoy reading fantasy and science-fiction novels, a few of my favourites are:
+1. City of Last Chances - Adrian Tchaikovsky
+2. The Stone Man - Luke Smitherd
+3. Shroud - Adrian Tchaikovsky
+4. Metamorphosis of Prime Intellect - Roger Williams
+5. Hater - David Moody
