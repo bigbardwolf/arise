@@ -1,0 +1,4 @@
+User-agent: * 
+Disallow: https://bigbardwolf.dev/config/*
+
+Sitemap: https://bigbardwolf.dev/sitemap.xml
