@@ -3,22 +3,22 @@
   <channel>
     <title>bigbardwolf.dev</title>
     <description>NetSuite Developer, 4+ Years Experience.</description>
-    <link>bigbardwolf.dev</link>
+    <link>https://bigbardwolf.dev</link>
     <language>en</language>
     <generator>Arise</generator>
     <image>
-      <url>bigbardwolf.dev/config/favicon/favicon.ico</url>
+      <url>https://bigbardwolf.dev/config/favicon/favicon.ico</url>
       <title>bigbardwolf.dev</title>
-      <link>bigbardwolf.dev</link>
+      <link>https://bigbardwolf.dev</link>
     </image>
-    <atom:link href="bigbardwolf.dev/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://bigbardwolf.dev/rss.xml" rel="self" type="application/rss+xml"/>
         <ttl>60</ttl>
-<lastBuildDate>Mon, 06 Oct 2025 09:23:32 +0000</lastBuildDate>
+<lastBuildDate>Mon, 06 Oct 2025 09:43:44 +0000</lastBuildDate>
         <item>
         <title>Test Post</title>
         <dc:creator>Josh Simpson</dc:creator>
         <description>Test post for Arise-based website.</description>
-        <link>bigbardwolf.dev/posts/first-post/</link>
+        <link>https://bigbardwolf.dev/posts/first-post/</link>
         <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
         </item>
 </channel>
