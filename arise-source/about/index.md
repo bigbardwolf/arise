@@ -15,9 +15,11 @@ rss_hide:: "true"
 # Profile
 A NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support.
 I have experience with:
-- SuiteScript 2.0/2.1
-- SuiteCloud Development Framework
-- Project ownership: from specification to production
+<ul>
+  <li>SuiteScript 2.0/2.1</li>
+  <li>SuiteCloud Development Framework</li>
+  <li>Project ownership: from specification to production</li>
+</ul>
 
 # Free Time
 In my free time I enjoy reading, primarily fantasy and science-fiction novels.
