@@ -54,3 +54,18 @@ jobs:
           FOLDER: arise-out # The Arise build output location. Don't change this.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Handled automatically -- Don't change this unless you're pushing to a different repo
           MESSAGE: "Commit: ({sha}) {msg}" # Copies commit msg from main to the deploy version branch
+
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /workspace/proxy/caddy/site
+            git fetch origin html
+            git reset --hard origin/html
