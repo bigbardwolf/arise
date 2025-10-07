@@ -14,11 +14,21 @@ rss_hide:: "true"
 
 I am a NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support. My experience includes the following:
 
- - SuiteScript 2.0/2.1
- - SuiteCloud Development Framework
+**NetSuite**
+
+ - SuiteScript 2.0/2.1 & SDF
+ - Suitelet Applications (Custom and NetSuite UI)
  - Freemarker & Advanced PDF Layouts
- - Project ownership: from specification to production
- - Troubleshooting and support
+ - Third-party system integrations
+ - Script issues: diagnosis &rarr; resolution
+ - Project ownership: requirements -> specification -> production
+
+**Miscellaneous**
+
+I have also had exposure to other tools/languages:
+
+ - Integrated Django/Python application -> NetSuite
+ - 2FA Application - created with .NET and Blazor
 
 _____
 
