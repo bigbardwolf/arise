@@ -13,7 +13,7 @@
     </image>
     <atom:link href="https://bigbardwolf.dev/rss.xml" rel="self" type="application/rss+xml"/>
         <ttl>60</ttl>
-<lastBuildDate>Tue, 07 Oct 2025 10:58:19 +0000</lastBuildDate>
+<lastBuildDate>Tue, 07 Oct 2025 11:13:27 +0000</lastBuildDate>
         <item>
         <title>Test Project</title>
         <dc:creator>Josh Simpson</dc:creator>
@@ -24,7 +24,7 @@
         <item>
         <title>CSV Statement Creator</title>
         <dc:creator>Josh Simpson</dc:creator>
-        <description>CSV Satement creation application</description>
+        <description>CSV Statement creation via HTML rendering and XPath processing</description>
         <link>https://bigbardwolf.dev/netsuite/csv-statements/</link>
         <pubDate>Tue, 07 Oct 2025 00:00:00 +0000</pubDate>
         </item>
