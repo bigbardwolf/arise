@@ -21,13 +21,11 @@ I am a NetSuite developer with 4+ years of experience in developing account cust
  - Freemarker & Advanced PDF Layouts
  - Third-party system integrations
  - Script issues: diagnosis &rarr; resolution
- - Project ownership: requirements -> specification -> production
+ - Project ownership: requirements &rarr; specification &rarr; production
 
 **Miscellaneous**
 
-I have also had exposure to other tools/languages:
-
- - Integrated Django/Python application -> NetSuite
+ - Integrated Django/Python application &rarr; NetSuite
  - 2FA Application - created with .NET and Blazor
 
 _____

@@ -2,12 +2,12 @@
 Title:: "Index: Projects"
 
 Author:: ""
-Description:: "Projects I have, or currently am, working on."
+Description:: "NetSuite Projects, tips, etc.."
 Language:: "en"
 Thumbnail:: ""
 Published Date:: ""
 Modified Date:: ""
 
 toc:: "true"
-content_header:: "false"
+content_header:: "true"
 ---- END ARISE \\ DO NOT MODIFY THIS LINE ---->
