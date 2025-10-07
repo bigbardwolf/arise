@@ -14,16 +14,18 @@ rss_hide:: "true"
 
 # About
 I am a NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support.
+
 ## Experience:
 
-* SuiteScript 2.0/2.1
-* SuiteCloud Development Framework
-* Freemarker & Advanced PDF Layouts
-* Project ownership: from specification to production
-* Troubleshooting and support
+ - SuiteScript 2.0/2.1
+ - SuiteCloud Development Framework
+ - Freemarker & Advanced PDF Layouts
+ - Project ownership: from specification to production
+ - Troubleshooting and support
 
 # Free Time
 In my free time I enjoy reading, gaming, and taking my dog for long walks.
+
 ## Top Books
 I mostly enjoy reading fantasy and science-fiction novels, a few of my favourites are:
 
