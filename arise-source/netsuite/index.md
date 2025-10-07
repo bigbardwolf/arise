@@ -1,5 +1,5 @@
 <!-- BEGIN ARISE ------------------------------
-Title:: "NetSuite Projects"
+Title:: "NetSuite"
 
 Author:: ""
 Description:: "NetSuite Projects, tips, etc.."
