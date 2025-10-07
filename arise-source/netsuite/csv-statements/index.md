@@ -2,7 +2,7 @@
 Title:: "CSV Statement Creator"
 
 Author:: "Josh Simpson"
-Description:: "CSV Satement creation application"
+Description:: "CSV Statement creation via HTML rendering and XPath processing"
 Language:: "en"
 Thumbnail:: ""
 Published Date:: "2025-10-07"
@@ -10,7 +10,7 @@ Modified Date:: "2025-10-07"
 
 ---- END ARISE \\ DO NOT MODIFY THIS LINE ---->
 
-# CSV Statement Creation
+![CSV Statement Creator](csv-statements.png)
 
 I have previously developed an SDF application for the creation of Customer Statements in the CSV file format, matching data exactly with PDF statements created with the standard statement tool.
 This was achieved with the use of a basic, but slightly modified, statement template rendered in the HTML format.
@@ -26,30 +26,20 @@ The statement data is gathered by using the N/render module with the mentioned P
 **Getting the Data**
 
 The application will function by rendering a statement with this template, but in the HTML format instead of PDF. When rendering this way, the output will maintain the tags entered in the statement template, allowing XPath querying of the data it contains.
-Example XPath processing of rendered statement:
+Example XPath processing of rendered statement lines:
 ```javascript
-let csvData = { headers: [], lines: [] };
+
+let csvData = { lines: [] };
 let file = nRender.statement(data.params);
 
 // Convert rendered file to string
 const parsed = nXml.Parser.fromString({ text: file.getContents() });
-
-// Pull out Header elements
-const headers = nXml.XPath.select({
-  node: parsed,
-  xpath: `//table//tr[@id='${HEADER_ROW_ID}']/th`
-});
 
 // Pull out Statement Line elements
 const lines = nXml.XPath.select({
   node: parsed,
   xpath: `//table//tr[starts-with(@id, '${ROW_ID_PREFIX}')]`
 });
-
-for (let header of headers)
-{
-  csvData.headers.push(header.textContent.replaceAll(',', ''));
-}
 
 // Iterate through lines and get values
 for (let line of lines)
@@ -65,4 +55,5 @@ for (let line of lines)
         .replaceAll('\n', '');
   }));
 }
+
 ```

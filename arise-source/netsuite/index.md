@@ -1,5 +1,5 @@
 <!-- BEGIN ARISE ------------------------------
-Title:: "Index: Projects"
+Title:: "NetSuite Projects"
 
 Author:: ""
 Description:: "NetSuite Projects, tips, etc.."
@@ -9,5 +9,5 @@ Published Date:: ""
 Modified Date:: ""
 
 toc:: "true"
-content_header:: "true"
+content_header:: "false"
 ---- END ARISE \\ DO NOT MODIFY THIS LINE ---->
