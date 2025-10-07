@@ -1,0 +1,144 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+        <!-- Basic Metadata -->
+        <meta charset="utf-8" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="generator" content="Arise" />
+
+        <title>CSV Statement Creator · bigbardwolf.dev</title>
+        <meta name="description" content="CSV Satement creation application">
+        <meta name="author" content="Josh Simpson">
+        <!-- End Basic Metadata -->
+
+        <!-- OpenGraph Metadata -->
+        <meta property="og:site_name" content="bigbardwolf.dev" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="CSV Statement Creator · bigbardwolf.dev" />
+        <meta property="og:description" content="CSV Satement creation application" />
+        <meta property="og:url" content="https://bigbardwolf.dev/netsuite/csv-statements/" />
+        <meta property="og:image" content="https://bigbardwolf.dev/netsuite/csv-statements/" />
+        <meta property="article:published_time" content="2025-10-07" />
+        <meta property="article:modified_time" content="2025-10-07" />
+        <!-- End OpenGraph Metadata -->
+    
+        <!-- Twitter Metadata -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="CSV Statement Creator · bigbardwolf.dev" />
+        <meta name="twitter:description" content="CSV Satement creation application" />
+        <meta name="twitter:url" content="https://bigbardwolf.dev/netsuite/csv-statements/" />
+        <meta name="twitter:image" content="https://bigbardwolf.dev/netsuite/csv-statements/" />
+        <!-- End Twitter Metadata -->
+
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/config/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/config/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/config/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/config/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/config/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/config/favicon/favicon.ico">
+        <meta name="msapplication-TileColor" content="#00aba9">
+        <meta name="msapplication-config" content="/config/favicon/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <!-- End Favicon -->
+
+        <!-- Styesheet+Logo -->
+        <style>
+                html * {font-family:monospace,sans-serif;} 
+                body {background-color:#121619;margin:40px auto;max-width:650px;padding:0 10px;color:#65f85a;}
+                a {color:#b8f1b4;}
+                hr {color:#65f85a;}
+                .topbar a {color:#65f85a;}
+        </style>
+        <link rel="stylesheet" href="/config/main.css"> 
+        <div class="logo"><a href="/"><img src="/config/bigbardwolf.png" /></a></div>
+        <!-- End Styles+Logo -->
+
+        <!-- Navigation -->
+        <nav class="topbar">
+                <a href="/">Home</a> ⟛ <a href="/netsuite">NetSuite</a> ⟛ <a href="/posts">Projects</a> ⟛ <a href="https://github.com/bigbardwolf">GitHub</a>
+        </nav>
+        <!-- End Navigation -->
+</head>
+
+<body>
+<p class="date">// 2025-10-07 // <i>by Josh Simpson</i></p>
+<h1 id="csv-statement-creation">CSV Statement Creation</h1>
+<p>I have previously developed an SDF application for the creation of
+Customer Statements in the CSV file format, matching data exactly with
+PDF statements created with the standard statement tool. This was
+achieved with the use of a basic, but slightly modified, statement
+template rendered in the HTML format.</p>
+<p><strong>Suitelet UI</strong></p>
+<p>A Suitelet was created, with an interface that mimics the UI of the
+standard statment creator, allowing the script to pass the required
+paramters for rendering to the back-end suitelet for file creation. At a
+minimum the UI will need a field for Customer selection, with Start
+Date, Statement Date, Subsidiary, Open Transactions Only, and
+Consolidate Statement being optional. The finished CSV file will have
+contents matching a statement created in the standard way based on these
+field options.</p>
+<p><strong>Template Setup</strong></p>
+<p>The statement data is gathered by using the N/render module with the
+mentioned PDF template and UI options. Each piece of data in the
+template that is needed for the CSV will require an ID in the template
+tag (e.g. the tag containing the balance value could have
+“statement-balance” as the ID.) The statement lines will require a
+counter variable before iteration, with the value incremented each line.
+The counter value can then be appended to a “line-” ID to allow each to
+be indexed for the next step.</p>
+<p><strong>Getting the Data</strong></p>
+<p>The application will function by rendering a statement with this
+template, but in the HTML format instead of PDF. When rendering this
+way, the output will maintain the tags entered in the statement
+template, allowing XPath querying of the data it contains. Example XPath
+processing of rendered statement:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> csvData <span class="op">=</span> { <span class="dt">headers</span><span class="op">:</span> []<span class="op">,</span> <span class="dt">lines</span><span class="op">:</span> [] }<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> file <span class="op">=</span> nRender<span class="op">.</span><span class="fu">statement</span>(data<span class="op">.</span><span class="at">params</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert rendered file to string</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> parsed <span class="op">=</span> nXml<span class="op">.</span><span class="at">Parser</span><span class="op">.</span><span class="fu">fromString</span>({ <span class="dt">text</span><span class="op">:</span> file<span class="op">.</span><span class="fu">getContents</span>() })<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Pull out Header elements</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> headers <span class="op">=</span> nXml<span class="op">.</span><span class="at">XPath</span><span class="op">.</span><span class="fu">select</span>({</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">node</span><span class="op">:</span> parsed<span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">xpath</span><span class="op">:</span> <span class="vs">`//table//tr[@id=&#39;</span><span class="sc">${</span>HEADER_ROW_ID<span class="sc">}</span><span class="vs">&#39;]/th`</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Pull out Statement Line elements</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> lines <span class="op">=</span> nXml<span class="op">.</span><span class="at">XPath</span><span class="op">.</span><span class="fu">select</span>({</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">node</span><span class="op">:</span> parsed<span class="op">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">xpath</span><span class="op">:</span> <span class="vs">`//table//tr[starts-with(@id, &#39;</span><span class="sc">${</span>ROW_ID_PREFIX<span class="sc">}</span><span class="vs">&#39;)]`</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> header <span class="kw">of</span> headers)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  csvData<span class="op">.</span><span class="at">headers</span><span class="op">.</span><span class="fu">push</span>(header<span class="op">.</span><span class="at">textContent</span><span class="op">.</span><span class="fu">replaceAll</span>(<span class="st">&#39;,&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span>))<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">// Iterate through lines and get values</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> line <span class="kw">of</span> lines)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> lineData <span class="op">=</span> nXml<span class="op">.</span><span class="at">XPath</span><span class="op">.</span><span class="fu">select</span>({</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">node</span><span class="op">:</span> line<span class="op">,</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xpath</span><span class="op">:</span> <span class="st">&#39;td&#39;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  csvData<span class="op">.</span><span class="at">lines</span><span class="op">.</span><span class="fu">push</span>(lineData<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> {</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> row<span class="op">.</span><span class="at">textContent</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">replaceAll</span>(<span class="st">&#39;,&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">replaceAll</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)<span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+
+        <!-- Page Footer -->
+        <div class="footer">
+                <p>Copyleft &copy 2025 Josh Simpson • All wrongs reserved</p>
+                <p>Built with 💚 using <a href="https://github.com/spectrasecure/arise">Arise</a>, a cloud-native static site generator written in Bash.</p>
+        </div>
+        <!-- End Page Footer -->
+
+</body>
+</html>

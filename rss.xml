@@ -13,20 +13,20 @@
     </image>
     <atom:link href="https://bigbardwolf.dev/rss.xml" rel="self" type="application/rss+xml"/>
         <ttl>60</ttl>
-<lastBuildDate>Tue, 07 Oct 2025 10:17:31 +0000</lastBuildDate>
-        <item>
-        <title>Test Project</title>
-        <dc:creator>Josh Simpson</dc:creator>
-        <description>Page creation test for projects</description>
-        <link>https://bigbardwolf.dev/projects/test-project/</link>
-        <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
-        </item>
+<lastBuildDate>Tue, 07 Oct 2025 10:58:19 +0000</lastBuildDate>
         <item>
         <title>Test Project</title>
         <dc:creator>Josh Simpson</dc:creator>
         <description>Page creation test for projects</description>
         <link>https://bigbardwolf.dev/posts/test-project/</link>
         <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+        <title>CSV Statement Creator</title>
+        <dc:creator>Josh Simpson</dc:creator>
+        <description>CSV Satement creation application</description>
+        <link>https://bigbardwolf.dev/netsuite/csv-statements/</link>
+        <pubDate>Tue, 07 Oct 2025 00:00:00 +0000</pubDate>
         </item>
 </channel>
 </rss>
