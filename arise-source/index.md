@@ -12,10 +12,7 @@ content_header:: "false"
 rss_hide:: "true"
 ---- END ARISE \\ DO NOT MODIFY THIS LINE ---->
 
-# About
-I am a NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support.
-
-## Experience:
+I am a NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support. My experience includes the following:
 
  - SuiteScript 2.0/2.1
  - SuiteCloud Development Framework
@@ -23,14 +20,12 @@ I am a NetSuite developer with 4+ years of experience in developing account cust
  - Project ownership: from specification to production
  - Troubleshooting and support
 
-# Free Time
-In my free time I enjoy reading, gaming, and taking my dog for long walks.
+_____
 
-## Top Books
-I mostly enjoy reading fantasy and science-fiction novels, a few of my favourites are:
+In my free time I enjoy taking my dog for long walks in nature, especially woodland areas. I also enjoy gaming and reading, primarily science-fiction and fantasy novels. A few of my favourite books are:
 
-1. City of Last Chances - Adrian Tchaikovsky
-2. The Stone Man - Luke Smitherd
-3. Shroud - Adrian Tchaikovsky
-4. Metamorphosis of Prime Intellect - Roger Williams
-5. Hater - David Moody
+1. [City of Last Chances](https://www.goodreads.com/series/377488-the-tyrant-philosophers) - Adrian Tchaikovsky
+2. [The Stone Man](https://www.goodreads.com/series/314364-the-stone-man) - Luke Smitherd
+3. [Shroud](https://www.goodreads.com/book/show/210384823-shroud) - Adrian Tchaikovsky
+4. [Metamorphosis of Prime Intellect](https://www.goodreads.com/book/show/26247314-the-metamorphosis-of-prime-intellect) - Roger Williams
+5. [Hater](https://www.goodreads.com/series/41782-hater) - David Moody
