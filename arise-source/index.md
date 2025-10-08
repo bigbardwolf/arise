@@ -1,7 +1,7 @@
 <!-- BEGIN ARISE ------------------------------
 Title:: "home"
 
-Author:: "Josh Simpson"
+Author:: "bigbardwolf"
 Description:: "NetSuite Developer, 4+ Years Experience."
 Language:: "en"
 Thumbnail:: "arise-icon.png"
@@ -12,7 +12,7 @@ content_header:: "false"
 rss_hide:: "true"
 ---- END ARISE \\ DO NOT MODIFY THIS LINE ---->
 
-I am a NetSuite developer with 4+ years of experience in developing account customisations, SDF projects, and providing user support. My experience includes the following:
+NetSuite developer with 4+ years of experience in a primarily development focussed role. Experienced with producing account customisations, larger SDF based projects, troubleshooting, and providing support. Comfortable with owning a piece of work from requirement gathering through to Production deployment.
 
 **NetSuite**
 
@@ -30,7 +30,7 @@ I am a NetSuite developer with 4+ years of experience in developing account cust
 
 _____
 
-In my free time I enjoy taking my dog for long walks in nature, especially woodland areas. I also enjoy gaming and reading, primarily science-fiction and fantasy novels. A few of my favourite books are:
+In my free time I enjoy taking my dog for long walks in nature, especially woodland areas. I also enjoy gaming and reading, mainly science-fiction and fantasy novels. A few of my favourite books are:
 
 1. [City of Last Chances](https://www.goodreads.com/series/377488-the-tyrant-philosophers) - Adrian Tchaikovsky
 2. [The Stone Man](https://www.goodreads.com/series/314364-the-stone-man) - Luke Smitherd

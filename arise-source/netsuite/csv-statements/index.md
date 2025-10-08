@@ -1,7 +1,7 @@
 <!-- BEGIN ARISE ------------------------------
 Title:: "CSV Statements"
 
-Author:: "Josh Simpson"
+Author:: "bigbardwolf"
 Description:: "CSV Statement creation via HTML rendering and XPath processing"
 Language:: "en"
 Thumbnail:: "csv-statements.png"

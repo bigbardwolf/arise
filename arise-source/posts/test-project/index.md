@@ -1,7 +1,7 @@
 <!-- BEGIN ARISE ------------------------------
 Title:: "Test Project"
 
-Author:: "Josh Simpson"
+Author:: "bigbardwolf"
 Description:: "Page creation test for projects"
 Language:: "en"
 Thumbnail:: ""
