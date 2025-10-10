@@ -1,5 +1,5 @@
 <!-- BEGIN ARISE ------------------------------
-Title:: "Index: Projects"
+Title:: "Projects"
 
 Author:: ""
 Description:: "Projects I have, or currently am, working on."

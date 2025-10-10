@@ -10,23 +10,21 @@ Modified Date:: "2025-10-07"
 
 ---- END ARISE \\ DO NOT MODIFY THIS LINE ---->
 
-![CSV Statement Creator](csv-statements.png)
-
 **Summary**
 
-I have previously developed an SDF application for the creation of Customer Statements in the CSV file format, matching data exactly with PDF statements created with the standard statement tool.
-This was achieved with the use of a basic, but slightly modified, statement template rendered in the HTML format.
+CSV Statement creation can be achieved relatively easily with a modified Advanced PDF template rendered in the HTML format. By adding IDs to the relevant data tags, they remain in the generated HTML allowing retrieval with XPath processing of the file contents.
 
 **Suitelet UI**
 
-A Suitelet was created, with an interface that mimics the UI of the standard statment creator, allowing the script to pass the required paramters for rendering to the back-end suitelet for file creation. At a minimum the UI will need a field for Customer selection, with Start Date, Statement Date, Subsidiary, Open Transactions Only, and Consolidate Statement being optional. The finished CSV file will have contents matching a statement created in the standard way based on these field options.
+An interface Suitelet was created to mimic the layout of the "Print Individual Statement" functionality of NetSuite with the exclusion of form selection, this will be hard-coded to use the prepared template with added IDs. 
+
+![CSV Statement Creator](csv-statements.png)
 
 **Template Setup**
 
 The statement data is gathered by using the N/render module with the mentioned PDF template and UI options. Each piece of data in the template that is needed for the CSV will require an ID in the template tag (e.g. the tag containing the balance value could have "statement-balance" as the ID.) The statement lines will require a counter variable before iteration, with the value incremented each line. The counter value can then be appended to a "line-" ID to allow each to be indexed for the next step. Example Statement lines:
 
 ```html
-
 <#assign counter = 0>
 <table>
 <#list statement.lines as line>
@@ -51,15 +49,14 @@ The statement data is gathered by using the N/render module with the mentioned P
   <#assign counter = counter + 1>
   </#list>
 </table>
-
 ```
 
 **Getting the Data**
 
 The application will function by rendering a statement with this template, but in the HTML format instead of PDF. When rendering this way, the output will maintain the tags entered in the statement template, allowing XPath querying of the data it contains.
 Example XPath processing of rendered statement lines:
-```javascript
 
+```javascript
 let csvData = { lines: [] };
 let file = nRender.statement(data.params);
 
@@ -86,5 +83,4 @@ for (let line of lines)
         .replaceAll('\n', '');
   }));
 }
-
 ```
