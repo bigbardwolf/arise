@@ -2,6 +2,9 @@
 
 <html lang="en">
 <head>
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
         <!-- Basic Metadata -->
         <meta charset="utf-8" />
         <meta name="HandheldFriendly" content="True" />
@@ -57,32 +60,27 @@
 
         <!-- Navigation -->
         <nav class="topbar">
-                <a href="/">Home</a> ⟛ <a href="/netsuite">NetSuite</a> ⟛ <a href="/posts">Projects</a> ⟛ <a href="https://github.com/bigbardwolf">GitHub</a>
+                <a href="/">Home</a> <i class="bi bi-record"></i> <a href="/netsuite">NetSuite</a> <i class="bi bi-record"></i> <a href="/projects">Projects</a> <i class="bi bi-record"></i> <a href="https://github.com/bigbardwolf">GitHub</a>
         </nav>
         <!-- End Navigation -->
 </head>
 
 <body>
 <p class="date">// 2025-10-07 // <i>by bigbardwolf</i></p>
+<p><strong>Summary</strong></p>
+<p>CSV Statement creation can be achieved relatively easily with a
+modified Advanced PDF template rendered in the HTML format. By adding
+IDs to the relevant data tags, they remain in the generated HTML
+allowing retrieval with XPath processing of the file contents.</p>
+<p><strong>Suitelet UI</strong></p>
+<p>An interface Suitelet was created to mimic the layout of the “Print
+Individual Statement” functionality of NetSuite with the exclusion of
+form selection, this will be hard-coded to use the prepared template
+with added IDs.</p>
 <figure>
 <img src="csv-statements.png" alt="CSV Statement Creator" />
 <figcaption aria-hidden="true">CSV Statement Creator</figcaption>
 </figure>
-<p><strong>Summary</strong></p>
-<p>I have previously developed an SDF application for the creation of
-Customer Statements in the CSV file format, matching data exactly with
-PDF statements created with the standard statement tool. This was
-achieved with the use of a basic, but slightly modified, statement
-template rendered in the HTML format.</p>
-<p><strong>Suitelet UI</strong></p>
-<p>A Suitelet was created, with an interface that mimics the UI of the
-standard statment creator, allowing the script to pass the required
-paramters for rendering to the back-end suitelet for file creation. At a
-minimum the UI will need a field for Customer selection, with Start
-Date, Statement Date, Subsidiary, Open Transactions Only, and
-Consolidate Statement being optional. The finished CSV file will have
-contents matching a statement created in the standard way based on these
-field options.</p>
 <p><strong>Template Setup</strong></p>
 <p>The statement data is gathered by using the N/render module with the
 mentioned PDF template and UI options. Each piece of data in the
@@ -93,31 +91,30 @@ counter variable before iteration, with the value incremented each line.
 The counter value can then be appended to a “line-” ID to allow each to
 be indexed for the next step. Example Statement lines:</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>#assign counter = 0&gt;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="dt">&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>#list statement.lines as line&gt;</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>#if line_index==0&gt;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">tr</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;statement-headers&quot;</span><span class="dt">&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.datecol@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.description@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.charge@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.payment@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.balance@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>/#if&gt;</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">tr</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;line-${counter}&quot;</span><span class="dt">&gt;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.datecol}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.description}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.line.charge}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.line.payment}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.line.balance}&gt;<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>#assign counter = counter + 1&gt;</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>/#list&gt;</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>#assign counter = 0&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>#list statement.lines as line&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>#if line_index==0&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">tr</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;statement-headers&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.datecol@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.description@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.charge@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.payment@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${record.lines.balance@label}<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>/#if&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">tr</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;line-${counter}&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.datecol}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.description}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.line.charge}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.line.payment}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">td</span> <span class="er">colspan</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="dt">&gt;</span>${line.line.balance}&gt;<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>#assign counter = counter + 1&gt;</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>/#list&gt;</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span></code></pre></div>
 <p><strong>Getting the Data</strong></p>
 <p>The application will function by rendering a statement with this
 template, but in the HTML format instead of PDF. When rendering this
@@ -125,33 +122,32 @@ way, the output will maintain the tags entered in the statement
 template, allowing XPath querying of the data it contains. Example XPath
 processing of rendered statement lines:</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> csvData <span class="op">=</span> { <span class="dt">lines</span><span class="op">:</span> [] }<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> file <span class="op">=</span> nRender<span class="op">.</span><span class="fu">statement</span>(data<span class="op">.</span><span class="at">params</span>)<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert rendered file to string</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> parsed <span class="op">=</span> nXml<span class="op">.</span><span class="at">Parser</span><span class="op">.</span><span class="fu">fromString</span>({ <span class="dt">text</span><span class="op">:</span> file<span class="op">.</span><span class="fu">getContents</span>() })<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Pull out Statement Line elements</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> lines <span class="op">=</span> nXml<span class="op">.</span><span class="at">XPath</span><span class="op">.</span><span class="fu">select</span>({</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">node</span><span class="op">:</span> parsed<span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">xpath</span><span class="op">:</span> <span class="vs">`//table//tr[starts-with(@id, &#39;</span><span class="sc">${</span>ROW_ID_PREFIX<span class="sc">}</span><span class="vs">&#39;)]`</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">// Iterate through lines and get values</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> line <span class="kw">of</span> lines)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> lineData <span class="op">=</span> nXml<span class="op">.</span><span class="at">XPath</span><span class="op">.</span><span class="fu">select</span>({</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">node</span><span class="op">:</span> line<span class="op">,</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xpath</span><span class="op">:</span> <span class="st">&#39;td&#39;</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  csvData<span class="op">.</span><span class="at">lines</span><span class="op">.</span><span class="fu">push</span>(lineData<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> {</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> row<span class="op">.</span><span class="at">textContent</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">replaceAll</span>(<span class="st">&#39;,&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">replaceAll</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)<span class="op">;</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> csvData <span class="op">=</span> { <span class="dt">lines</span><span class="op">:</span> [] }<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> file <span class="op">=</span> nRender<span class="op">.</span><span class="fu">statement</span>(data<span class="op">.</span><span class="at">params</span>)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert rendered file to string</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> parsed <span class="op">=</span> nXml<span class="op">.</span><span class="at">Parser</span><span class="op">.</span><span class="fu">fromString</span>({ <span class="dt">text</span><span class="op">:</span> file<span class="op">.</span><span class="fu">getContents</span>() })<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Pull out Statement Line elements</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> lines <span class="op">=</span> nXml<span class="op">.</span><span class="at">XPath</span><span class="op">.</span><span class="fu">select</span>({</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">node</span><span class="op">:</span> parsed<span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">xpath</span><span class="op">:</span> <span class="vs">`//table//tr[starts-with(@id, &#39;</span><span class="sc">${</span>ROW_ID_PREFIX<span class="sc">}</span><span class="vs">&#39;)]`</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Iterate through lines and get values</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> line <span class="kw">of</span> lines)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> lineData <span class="op">=</span> nXml<span class="op">.</span><span class="at">XPath</span><span class="op">.</span><span class="fu">select</span>({</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">node</span><span class="op">:</span> line<span class="op">,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xpath</span><span class="op">:</span> <span class="st">&#39;td&#39;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  csvData<span class="op">.</span><span class="at">lines</span><span class="op">.</span><span class="fu">push</span>(lineData<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> row<span class="op">.</span><span class="at">textContent</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">replaceAll</span>(<span class="st">&#39;,&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">replaceAll</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 
         <!-- Page Footer -->
         <div class="footer">
