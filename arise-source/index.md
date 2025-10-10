@@ -6,7 +6,7 @@ Description:: "NetSuite Developer, 4+ Years Experience."
 Language:: "en"
 Thumbnail:: "arise-icon.png"
 Published Date:: "2025-10-06"
-Modified Date:: "2025-10-06"
+Modified Date:: "2025-10-10"
 
 content_header:: "false"
 rss_hide:: "true"
